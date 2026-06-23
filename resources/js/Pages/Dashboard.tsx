@@ -96,36 +96,35 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
         ...d,
         // Mock an AI projection based on actual sales for the cybernetic feel
         projected: Math.round(d.sales * (1 + (Math.random() * 0.4 - 0.1))), 
-    }));
-
-    return (
+    }));    return (
         <AuthenticatedLayout
             header={
-                <h2 className="font-serif text-2xl font-bold leading-tight text-gray-800">
+                <h2 className="font-serif text-2xl font-bold leading-tight text-brand-black dark:text-white">
                     Admin Dashboard
                 </h2>
             }
         >
             <Head title="Admin Dashboard" />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="py-12 bg-gray-50 dark:bg-zinc-950 min-h-[calc(100vh-64px)] transition-colors duration-500">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-10">
+                    
                     {/* Stats Grid */}
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                         {cards.map((card) => (
                             <div 
                                 key={card.title} 
-                                className="group flex flex-col overflow-hidden rounded-xl bg-white p-6 shadow-sm border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[#DCA73A]/30"
+                                className="group flex flex-col overflow-hidden rounded-xl bg-white dark:bg-zinc-900 p-6 shadow-sm border border-gray-100 dark:border-zinc-800/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-gold/30 dark:hover:border-brand-gold/50"
                             >
                                 <div className="flex items-center justify-between">
-                                    <div className={`p-3 rounded-lg ${card.bg} transition-transform duration-300 group-hover:scale-110`}>
-                                        <card.icon className={`h-6 w-6 ${card.color}`} />
+                                    <div className={`p-3 rounded-lg ${card.bg} dark:bg-zinc-800/40 transition-transform duration-300 group-hover:scale-110`}>
+                                        <card.icon className={`h-6 w-6 ${card.color} dark:text-brand-gold`} />
                                     </div>
-                                    <span className="text-xs font-medium text-gray-400">Lifetime</span>
+                                    <span className="text-xs font-medium text-gray-400 dark:text-gray-500">Lifetime</span>
                                 </div>
                                 <div className="mt-6 flex-1">
-                                    <h3 className="text-[32px] font-bold text-[#0f172a] group-hover:text-[#DCA73A] transition-colors">{card.value}</h3>
-                                    <p className="mt-1 text-[13px] text-gray-500 font-medium">{card.title}</p>
+                                    <h3 className="text-[32px] font-bold text-brand-black dark:text-white group-hover:text-[#DCA73A] transition-colors">{card.value}</h3>
+                                    <p className="mt-1 text-[13px] text-gray-500 dark:text-gray-400 font-medium">{card.title}</p>
                                 </div>
                                 <Link 
                                     href={card.link}
@@ -139,7 +138,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                     </div>
 
                     {/* Neural Analytics Chart */}
-                    <div className="mt-10 overflow-hidden rounded-xl bg-[#111] p-8 shadow-[0_0_40px_rgba(212,175,55,0.05)] border border-[#D4AF37]/20 relative">
+                    <div className="overflow-hidden rounded-xl bg-[#111] p-8 shadow-[0_0_40px_rgba(212,175,55,0.05)] border border-[#D4AF37]/20 relative">
                         {/* Glowing Background Accents */}
                         <div className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-[#D4AF37] opacity-5 blur-[100px] pointer-events-none"></div>
                         <div className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full bg-[#00f0ff] opacity-5 blur-[100px] pointer-events-none"></div>
@@ -147,7 +146,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                         <div className="flex items-center justify-between relative z-10">
                             <div>
                                 <h3 className="font-serif text-2xl font-bold text-white tracking-wide" style={{ textShadow: '0 2px 10px rgba(212,175,55,0.3)' }}>
-                                    Neural Sales Analytics
+                                    Sales Performance
                                 </h3>
                                 <p className="text-xs text-[#D4AF37] font-medium tracking-widest uppercase mt-1">AI-Projected Revenue Trajectory</p>
                             </div>
@@ -216,13 +215,14 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                     </div>
 
                     {/* Quick Actions / Recent Activity */}
-                    <div className="mt-10 grid gap-6 lg:grid-cols-3">
-                        <div className="lg:col-span-2 rounded-xl bg-white p-8 shadow-sm border border-gray-100">
-                            <h3 className="font-serif text-xl font-bold text-gray-800">Recent Bookings</h3>
+                    <div className="grid gap-6 lg:grid-cols-2">
+                        {/* Bookings */}
+                        <div className="rounded-xl bg-white dark:bg-zinc-900 p-8 shadow-sm border border-gray-100 dark:border-zinc-800/80">
+                            <h3 className="font-serif text-xl font-bold text-brand-black dark:text-white">Recent Bookings</h3>
                             <div className="mt-6 overflow-x-auto">
                                 <table className="w-full text-left text-sm">
                                     <thead>
-                                        <tr className="border-b border-gray-100 text-gray-400 uppercase text-[10px] tracking-widest">
+                                        <tr className="border-b border-gray-100 dark:border-zinc-800 text-gray-400 dark:text-gray-500 uppercase text-[10px] tracking-widest">
                                             <th className="pb-4 font-bold">Customer</th>
                                             <th className="pb-4 font-bold">Service</th>
                                             <th className="pb-4 font-bold">Date</th>
@@ -230,19 +230,19 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                             <th className="pb-4 font-bold text-right">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-gray-50">
+                                    <tbody className="divide-y divide-gray-50 dark:divide-zinc-850">
                                         {recentBookings.length > 0 ? (
                                             recentBookings.map((booking) => (
-                                                <tr key={booking.id} className="group hover:bg-gray-50 transition-colors">
-                                                    <td className="py-4 font-medium text-gray-900 px-2">{booking.customer_name}</td>
-                                                    <td className="py-4 text-gray-500">{booking.service_type}</td>
-                                                    <td className="py-4 text-gray-500">{new Date(booking.appointment_date).toLocaleDateString()}</td>
+                                                <tr key={booking.id} className="group hover:bg-gray-50 dark:hover:bg-zinc-800/30 transition-colors">
+                                                    <td className="py-4 font-medium text-gray-900 dark:text-gray-100 px-2">{booking.customer_name}</td>
+                                                    <td className="py-4 text-gray-500 dark:text-gray-400">{booking.service_type}</td>
+                                                    <td className="py-4 text-gray-500 dark:text-gray-400">{new Date(booking.appointment_date).toLocaleDateString()}</td>
                                                     <td className="py-4">
                                                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                                                            booking.status === 'pending' ? 'bg-orange-50 text-orange-700' :
-                                                            booking.status === 'approved' ? 'bg-green-50 text-green-700' :
-                                                            booking.status === 'completed' ? 'bg-blue-50 text-blue-700' :
-                                                            'bg-red-50 text-red-700'
+                                                            booking.status === 'pending' ? 'bg-orange-50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-400' :
+                                                            booking.status === 'approved' ? 'bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-400' :
+                                                            booking.status === 'completed' ? 'bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400' :
+                                                            'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400'
                                                         }`}>
                                                             {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                                                         </span>
@@ -256,7 +256,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                                                     });
                                                                 }
                                                             }}
-                                                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                                                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-full transition-all opacity-0 group-hover:opacity-100"
                                                             title="Delete Booking"
                                                         >
                                                             <X className="h-4 w-4" />
@@ -266,7 +266,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                             ))
                                         ) : (
                                             <tr>
-                                                <td colSpan={5} className="py-8 text-center text-sm text-gray-400">
+                                                <td colSpan={5} className="py-8 text-center text-sm text-gray-400 dark:text-gray-500">
                                                     No recent bookings found.
                                                 </td>
                                             </tr>
@@ -275,28 +275,30 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                 </table>
                             </div>
                         </div>
-                        <div className="lg:col-span-2 rounded-xl bg-white p-8 shadow-sm border border-gray-100 mt-6 lg:mt-0">
-                            <h3 className="font-serif text-xl font-bold text-gray-800">Recent Messages</h3>
+
+                        {/* Messages */}
+                        <div className="rounded-xl bg-white dark:bg-zinc-900 p-8 shadow-sm border border-gray-100 dark:border-zinc-800/80">
+                            <h3 className="font-serif text-xl font-bold text-brand-black dark:text-white">Recent Messages</h3>
                             <div className="mt-6 overflow-x-auto">
                                 <table className="w-full text-left text-sm">
                                     <thead>
-                                        <tr className="border-b border-gray-100 text-gray-400 uppercase text-[10px] tracking-widest">
+                                        <tr className="border-b border-gray-100 dark:border-zinc-800 text-gray-400 dark:text-gray-500 uppercase text-[10px] tracking-widest">
                                             <th className="pb-4 font-bold">From</th>
                                             <th className="pb-4 font-bold">Subject</th>
                                             <th className="pb-4 font-bold">Date</th>
                                             <th className="pb-4 font-bold text-right">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-gray-50">
+                                    <tbody className="divide-y divide-gray-50 dark:divide-zinc-850">
                                         {recentMessages.length > 0 ? (
                                             recentMessages.map((msg) => (
-                                                <tr key={msg.id} className={`group hover:bg-gray-50 transition-colors ${!msg.is_read ? 'font-bold' : ''}`}>
-                                                    <td className="py-4 text-gray-900 px-2 flex items-center space-x-2">
-                                                        {msg.is_read ? <MailOpen className="h-4 w-4 text-gray-400" /> : <Mail className="h-4 w-4 text-brand-gold" />}
+                                                <tr key={msg.id} className={`group hover:bg-gray-50 dark:hover:bg-zinc-800/30 transition-colors ${!msg.is_read ? 'font-bold' : ''}`}>
+                                                    <td className="py-4 text-gray-900 dark:text-gray-100 px-2 flex items-center space-x-2">
+                                                        {msg.is_read ? <MailOpen className="h-4 w-4 text-gray-400 dark:text-gray-500" /> : <Mail className="h-4 w-4 text-brand-gold" />}
                                                         <span>{msg.name}</span>
                                                     </td>
-                                                    <td className="py-4 text-gray-500 truncate max-w-xs">{msg.subject || 'No Subject'}</td>
-                                                    <td className="py-4 text-gray-500">{new Date(msg.created_at).toLocaleDateString()}</td>
+                                                    <td className="py-4 text-gray-500 dark:text-gray-400 truncate max-w-xs">{msg.subject || 'No Subject'}</td>
+                                                    <td className="py-4 text-gray-500 dark:text-gray-400">{new Date(msg.created_at).toLocaleDateString()}</td>
                                                     <td className="py-4 text-right pr-2 space-x-2">
                                                         <Link 
                                                             href="/admin/messages"
@@ -313,7 +315,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                                                     });
                                                                 }
                                                             }}
-                                                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                                                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-full transition-all opacity-0 group-hover:opacity-100"
                                                             title="Delete Message"
                                                         >
                                                             <X className="h-4 w-4" />
@@ -323,7 +325,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                             ))
                                         ) : (
                                             <tr>
-                                                <td colSpan={4} className="py-8 text-center text-sm text-gray-400">
+                                                <td colSpan={4} className="py-8 text-center text-sm text-gray-400 dark:text-gray-500">
                                                     No recent messages found.
                                                 </td>
                                             </tr>
@@ -332,38 +334,39 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                 </table>
                             </div>
                         </div>
+                    </div>
 
-                        <div className="rounded-xl bg-[#141414] p-8 text-white shadow-lg">
-                            <h3 
-                                className="font-serif text-[32px] font-bold tracking-wide"
-                                style={{ textShadow: '2px 2px 0px #E5B45B' }}
-                            >
-                                Quick Actions
-                            </h3>
-                            <div className="mt-10 flex flex-col space-y-4">
-                                <Link href="/admin/collections/create" className="w-full rounded-xl bg-[#2A2A2A] px-6 py-4 text-base font-semibold text-white hover:bg-[#363636] transition-colors flex items-center justify-between">
-                                    <span>Upload New Collection</span>
-                                    <Image className="h-5 w-5 text-white" strokeWidth={1.5} />
-                                </Link>
-                                <button onClick={() => setIsTestimonialModalOpen(true)} className="w-full rounded-xl bg-[#2A2A2A] px-6 py-4 text-base font-semibold text-white hover:bg-[#363636] transition-colors flex items-center justify-between">
-                                    <span>Add Testimonial</span>
-                                    <Star className="h-5 w-5 text-white" strokeWidth={1.5} />
-                                </button>
-                                <div className="pt-2">
-                                    <Link href="/profile" className="w-full rounded-xl bg-[#DCA73A] px-6 py-4 text-base font-bold text-[#111] hover:bg-[#E5BE48] transition-colors flex items-center justify-between">
-                                        <span>System Settings</span>
-                                        <TrendingUp className="h-5 w-5 text-[#111]" strokeWidth={2} />
-                                    </Link>
-                                </div>
-                            </div>
+                    {/* Quick Actions Panel */}
+                    <div className="rounded-xl bg-[#141414] p-8 text-white shadow-lg border border-brand-gold/10 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 h-40 w-40 bg-brand-gold/5 blur-[40px] pointer-events-none rounded-full" />
+                        <h3 
+                            className="font-serif text-2xl font-bold tracking-wide text-white"
+                            style={{ textShadow: '1px 1px 0px rgba(212,175,55,0.4)' }}
+                        >
+                            Quick Atelier Actions
+                        </h3>
+                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                            <Link href="/admin/collections/create" className="rounded-xl bg-zinc-900 border border-zinc-800 hover:border-brand-gold/40 px-6 py-4 text-sm font-semibold text-white hover:bg-zinc-800 transition-all flex items-center justify-between">
+                                <span>Upload New Collection</span>
+                                <Image className="h-5 w-5 text-brand-gold" strokeWidth={1.5} />
+                            </Link>
+                            <button onClick={() => setIsTestimonialModalOpen(true)} className="rounded-xl bg-zinc-900 border border-zinc-800 hover:border-brand-gold/40 px-6 py-4 text-sm font-semibold text-white hover:bg-zinc-800 transition-all flex items-center justify-between text-left">
+                                <span>Add Customer Testimonial</span>
+                                <Star className="h-5 w-5 text-brand-gold" strokeWidth={1.5} />
+                            </button>
+                            <Link href="/profile" className="rounded-xl bg-brand-gold px-6 py-4 text-sm font-bold text-brand-black hover:bg-white transition-all flex items-center justify-between">
+                                <span>System Settings</span>
+                                <TrendingUp className="h-5 w-5 text-brand-black" strokeWidth={2} />
+                            </Link>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             {/* Add Testimonial Modal */}
             <Modal show={isTestimonialModalOpen} onClose={closeModal} maxWidth="md">
-                <div className="p-8 bg-[#141414] text-white">
+                <div className="p-8 bg-[#141414] text-white border border-brand-gold/15 rounded-2xl">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="font-serif text-2xl font-bold" style={{ textShadow: '1px 1px 0px #E5B45B' }}>Add Testimonial</h3>
                         <button onClick={closeModal} className="text-gray-400 hover:text-white transition-colors">
@@ -373,19 +376,19 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
 
                     <form onSubmit={submitTestimonial} className="space-y-5">
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">Customer Name</label>
+                            <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Customer Name</label>
                             <input 
                                 type="text" 
                                 value={data.customer_name}
                                 onChange={e => setData('customer_name', e.target.value)}
-                                className="w-full bg-[#2A2A2A] border-none rounded-lg text-white focus:ring-2 focus:ring-[#DCA73A] px-4 py-3"
+                                className="w-full bg-[#2a2a2a] border border-zinc-800 rounded-lg text-white focus:ring-1 focus:ring-brand-gold focus:border-brand-gold px-4 py-3 outline-none"
                                 placeholder="e.g. Sarah Jones"
                             />
                             {errors.customer_name && <p className="mt-1 text-xs text-red-400">{errors.customer_name}</p>}
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">Rating (1-5)</label>
+                            <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Rating (1-5)</label>
                             <div className="flex items-center space-x-2">
                                 {[1, 2, 3, 4, 5].map((star) => (
                                     <button 
@@ -394,7 +397,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                                         onClick={() => setData('rating', star)}
                                         className="focus:outline-none"
                                     >
-                                        <Star className={`h-6 w-6 ${data.rating >= star ? 'text-[#DCA73A] fill-[#DCA73A]' : 'text-gray-500'}`} />
+                                        <Star className={`h-6 w-6 ${data.rating >= star ? 'text-brand-gold fill-brand-gold' : 'text-gray-600'}`} />
                                     </button>
                                 ))}
                             </div>
@@ -402,12 +405,12 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">Review</label>
+                            <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Review</label>
                             <textarea 
                                 value={data.review}
                                 onChange={e => setData('review', e.target.value)}
                                 rows={4}
-                                className="w-full bg-[#2A2A2A] border-none rounded-lg text-white focus:ring-2 focus:ring-[#DCA73A] px-4 py-3 resize-none"
+                                className="w-full bg-[#2a2a2a] border border-zinc-800 rounded-lg text-white focus:ring-1 focus:ring-brand-gold focus:border-brand-gold px-4 py-3 resize-none outline-none"
                                 placeholder="What did the customer say?"
                             ></textarea>
                             {errors.review && <p className="mt-1 text-xs text-red-400">{errors.review}</p>}
@@ -417,7 +420,7 @@ export default function Dashboard({ stats, salesData, recentBookings, recentMess
                             <button 
                                 type="submit" 
                                 disabled={processing}
-                                className="w-full rounded-xl bg-[#DCA73A] px-6 py-4 text-base font-bold text-[#111] hover:bg-[#E5BE48] transition-colors disabled:opacity-50"
+                                className="w-full rounded-xl bg-brand-gold px-6 py-4 text-sm font-bold text-brand-black hover:bg-white transition-all disabled:opacity-50"
                             >
                                 {processing ? 'Saving...' : 'Save Testimonial'}
                             </button>
