@@ -52,7 +52,7 @@ A premium, elegant, and mobile-friendly digital platform for Chrisnoman Fashion,
 
 ## 🔑 Default Credentials
 - **Admin Email**: `Christiananaamenoman@gmail.com`
-- **Password**: `password`
+- **Password**: `Christiana@242526`
 
 ## 📈 SEO & Optimization
 - Dynamic meta tags and social sharing attributes via the `SEO` component.
