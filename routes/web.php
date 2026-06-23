@@ -14,6 +14,10 @@ Route::get('/checkout', function () {
     return Inertia::render('Checkout');
 })->name('checkout');
 
+Route::get('/lookbook', function () {
+    return Inertia::render('Lookbook');
+})->name('lookbook');
+
 use App\Http\Controllers\OrderController;
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 

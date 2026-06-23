@@ -41,6 +41,7 @@ export default function PublicLayout({ children }: PropsWithChildren) {
     const navLinks = [
         { name: 'Home', href: route('home') },
         { name: 'Collections', href: route('collections') },
+        { name: 'Lookbook', href: route('lookbook') },
         { name: 'Book Appointment', href: route('book') },
         { name: 'Contact', href: route('contact') },
     ];
