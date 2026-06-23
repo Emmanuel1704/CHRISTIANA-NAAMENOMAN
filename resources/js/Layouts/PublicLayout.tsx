@@ -184,7 +184,7 @@ export default function PublicLayout({ children }: PropsWithChildren) {
                                     </li>
                                 ))}
                                 <li>
-                                    <Link href="/login" className="hover:text-white transition-colors text-brand-gold/60">Admin Portal</Link>
+                                    <Link href={route('login')} className="hover:text-white transition-colors text-brand-gold/60">Admin Portal</Link>
                                 </li>
                             </ul>
                         </div>
