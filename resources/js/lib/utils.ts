@@ -11,6 +11,16 @@ export function asset(path: string | null | undefined): string {
         return path;
     }
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    try {
+        // @ts-ignore
+        const base = typeof route !== 'undefined' ? route('home') : '';
+        if (base) {
+            const baseSlash = base.endsWith('/') ? base : `${base}/`;
+            return `${baseSlash}${cleanPath}`;
+        }
+    } catch (e) {
+        // Ignore and fallback
+    }
     const hasSubdir = window.location.pathname.startsWith('/fashion/public');
     const base = hasSubdir ? '/fashion/public/' : '/';
     return `${base}${cleanPath}`;
