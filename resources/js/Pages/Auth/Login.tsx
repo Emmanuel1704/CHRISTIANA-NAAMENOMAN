@@ -88,7 +88,7 @@ export default function Login({
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                     className="w-full border-b border-gray-200 py-3 text-sm focus:border-brand-gold focus:outline-none focus:ring-0 transition-colors"
-                                    placeholder="Christiananaamenoman@gmail.com"
+                                    placeholder="Enter your email"
                                     required
                                 />
                                 <InputError message={errors.email} className="mt-2 text-red-500" />
