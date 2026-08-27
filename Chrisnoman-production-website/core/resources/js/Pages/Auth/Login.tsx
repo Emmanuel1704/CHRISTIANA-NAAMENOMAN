@@ -3,6 +3,7 @@ import Logo from '@/Components/Logo';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 import { motion } from 'framer-motion';
+import { ArrowLeft } from 'lucide-react';
 
 export default function Login({
     status,
@@ -66,6 +67,15 @@ export default function Login({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
+                        <div className="mb-6">
+                            <Link
+                                href="/"
+                                className="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-gold transition-colors space-x-2"
+                            >
+                                <ArrowLeft className="h-4 w-4" />
+                                <span>Back to Website</span>
+                            </Link>
+                        </div>
                         <h1 className="font-serif text-3xl font-bold text-gray-900">Welcome Back</h1>
                         <p className="mt-3 text-sm text-gray-500">
                             Please enter your administrative credentials to continue.
