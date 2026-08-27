@@ -1,0 +1,1 @@
+import{r as e}from"./app-DlBY6Lvh.js";import{t}from"./Logo-D4Ce8yOz.js";var n=e();function r(e){return(0,n.jsx)(t,{size:`sm`})}export{r as t};
