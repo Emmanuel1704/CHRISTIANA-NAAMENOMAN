@@ -10,6 +10,9 @@ import { cn } from '@/lib/utils';
 import WhatsAppChatBot from '@/Components/WhatsAppChatBot';
 
 export default function PublicLayout({ children }: PropsWithChildren) {
+    const { auth } = usePage().props as any;
+    const user = auth?.user;
+
     const { cart, removeFromCart, updateQuantity, cartTotal, cartCount, displayCurrency, setDisplayCurrency, convertPrice } = useCart();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -159,6 +162,24 @@ export default function PublicLayout({ children }: PropsWithChildren) {
                             <span>Contact</span>
                             <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
                         </Link>
+
+                        {user ? (
+                            <Link
+                                href={route('my-wardrobe')}
+                                className="relative group text-xs uppercase tracking-widest text-brand-black hover:text-brand-gold transition-colors dark:text-gray-300 dark:hover:text-brand-gold pb-1"
+                            >
+                                <span>My Wardrobe</span>
+                                <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                            </Link>
+                        ) : (
+                            <Link
+                                href={route('login')}
+                                className="relative group text-xs uppercase tracking-widest text-brand-black hover:text-brand-gold transition-colors dark:text-gray-300 dark:hover:text-brand-gold pb-1"
+                            >
+                                <span>Log In</span>
+                                <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#D4AF37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                            </Link>
+                        )}
                         <div className="flex items-center space-x-4">
                             <select
                                 value={displayCurrency}
@@ -214,6 +235,23 @@ export default function PublicLayout({ children }: PropsWithChildren) {
                                         {link.name}
                                     </Link>
                                 ))}
+                                {user ? (
+                                    <Link
+                                        href={route('my-wardrobe')}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-sm uppercase tracking-widest text-brand-gold font-bold"
+                                    >
+                                        My Wardrobe
+                                    </Link>
+                                ) : (
+                                    <Link
+                                        href={route('login')}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-sm uppercase tracking-widest text-brand-gold font-bold"
+                                    >
+                                        Log In
+                                    </Link>
+                                )}
                             </div>
                         </motion.div>
                     )}

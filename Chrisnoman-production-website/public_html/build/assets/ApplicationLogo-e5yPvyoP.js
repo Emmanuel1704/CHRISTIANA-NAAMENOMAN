@@ -1,0 +1,1 @@
+import{r as e}from"./app-B4Y8_oVO.js";import{t}from"./Logo-BTxGxckz.js";var n=e();function r(e){return(0,n.jsx)(t,{size:`sm`})}export{r as t};

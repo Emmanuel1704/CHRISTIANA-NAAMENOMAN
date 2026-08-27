@@ -101,6 +101,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Wardrobe Routes
+    Route::get('/my-wardrobe', [\App\Http\Controllers\WardrobeController::class, 'index'])->name('my-wardrobe');
+    Route::patch('/my-wardrobe/measurements', [\App\Http\Controllers\WardrobeController::class, 'updateMeasurements'])->name('my-wardrobe.measurements');
+    Route::post('/my-wardrobe/designs', [\App\Http\Controllers\WardrobeController::class, 'saveDesign'])->name('my-wardrobe.designs.save');
+    Route::delete('/my-wardrobe/designs/{id}', [\App\Http\Controllers\WardrobeController::class, 'deleteDesign'])->name('my-wardrobe.designs.delete');
+
     // Admin CRUD
     Route::resource('admin/collections', CollectionController::class);
     Route::resource('admin/bookings', BookingController::class);

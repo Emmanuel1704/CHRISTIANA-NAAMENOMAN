@@ -1,5 +1,5 @@
 import PublicLayout from '@/Layouts/PublicLayout';
-import { Head } from '@inertiajs/react';
+import { Head, usePage, router } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { Sparkles, Scissors, Info, ArrowRight, RefreshCw, ShoppingBag } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -10,10 +10,24 @@ type Sleeves = 'sleeveless' | 'cap' | 'puff' | 'long';
 type Fabric = 'kente' | 'brocade' | 'satin' | 'silk';
 
 export default function GownBuilder() {
+    const { auth } = usePage().props as any;
+    const user = auth?.user;
+
     const [neckline, setNeckline] = useState<Neckline>('sweetheart');
     const [silhouette, setSilhouette] = useState<Silhouette>('mermaid');
     const [sleeves, setSleeves] = useState<Sleeves>('sleeveless');
     const [fabric, setFabric] = useState<Fabric>('satin');
+
+    const saveToWardrobe = () => {
+        router.post(route('my-wardrobe.designs.save'), {
+            neckline,
+            silhouette,
+            sleeves,
+            fabric
+        }, {
+            preserveScroll: true
+        });
+    };
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -458,10 +472,25 @@ export default function GownBuilder() {
                                     </p>
                                 </div>
 
-                                <div className="shrink-0 w-full sm:w-auto">
+                                <div className="shrink-0 w-full sm:w-auto flex flex-col sm:flex-row gap-3">
+                                    {user ? (
+                                        <button
+                                            onClick={saveToWardrobe}
+                                            className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 bg-brand-gold text-brand-black hover:bg-brand-black hover:text-white px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest transition-all rounded-xl shadow-md"
+                                        >
+                                            <span>Save to Wardrobe</span>
+                                        </button>
+                                    ) : (
+                                        <a
+                                            href={route('login')}
+                                            className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 bg-zinc-800 text-white hover:bg-brand-gold hover:text-brand-black px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest transition-all rounded-xl shadow-md"
+                                        >
+                                            <span>Login to Save Gown</span>
+                                        </a>
+                                    )}
                                     <a
                                         href={getBookingUrl()}
-                                        className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 bg-brand-black text-white hover:bg-brand-gold hover:text-brand-black px-8 py-3.5 text-[10px] font-bold uppercase tracking-widest transition-all rounded-xl shadow-md"
+                                        className="w-full sm:w-auto text-center flex items-center justify-center space-x-2 bg-brand-black text-white hover:bg-brand-gold hover:text-brand-black px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest transition-all rounded-xl shadow-md border border-brand-gold/15"
                                     >
                                         <span>Confirm & Book Fitting</span>
                                         <ArrowRight className="h-3.5 w-3.5" />
